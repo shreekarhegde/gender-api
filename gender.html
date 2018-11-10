@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<title> determine gender</title>
+
+<head>
+    <h3>enter your name</h3>
+</head>
+
+<body>
+    <label for="name">name</label>
+    <input type="text" name="name" id="name" />
+    <button id="btn">determine gender</button>
+
+    <p id="output"></p>
+    <script src='./js/axios.js'></script>
+    <script>
+
+        let btnHandle = document.getElementById('btn');
+        let outputHandle = document.getElementById('output');
+        let nameHandle = document.getElementById('name');
+
+
+        btnHandle.addEventListener('click', function (e) {
+            e.preventDefault();
+            var api_key = 'pRPLCejozFwCHFbVCR';
+            var url = `http://gender-api.com/get?name=${nameHandle.value}&key=${api_key}`;
+
+            axios.get(url).then(function (response) {
+                var result = response.data;
+                outputHandle.innerHTML = result.gender;
+            }).catch(function (err) {
+                console.log(err);
+            })
+        }, false)
+
+
+    </script>
+
+
+</body>
+
+</html>
